@@ -81,19 +81,26 @@ Link this Zabbix template to each host that has a Bacula's backup job implemente
 
 ### Installation
 
-1. Create the configuration file `/etc/bacula/bacula-zabbix.conf` as the sample in this repository, customize it for your infrastructure environment, and set the permissions as below:
+1. Install zabbix_sender
+
+Debian or Ubuntu
+```
+apt-get install zabbix-sender
+```
+
+2. Create the configuration file `/etc/bacula/bacula-zabbix.conf` as the sample in this repository, customize it for your infrastructure environment, and set the permissions as below:
   ```
   chown root:bacula /etc/bacula/bacula-zabbix.conf
   chmod 640 /etc/bacula/bacula-zabbix.conf
   ```
 
-2. Create the bash script file `/var/spool/bacula/bacula-zabbix.bash` by copying it from this repository and set the permissions as below:
+3. Create the bash script file `/var/spool/bacula/bacula-zabbix.bash` by copying it from this repository and set the permissions as below:
   ```
   chown bacula:bacula /var/spool/bacula/bacula-zabbix.bash
   chmod 700 /var/spool/bacula/bacula-zabbix.bash
   ```
 
-3. Edit the Bacula Director configuration file `/etc/bacula/bacula-dir.conf` to start the script at the finish of each job. To do this you need to change the lines described below in the Messages resource that is used by all the configured jobs:
+4. Edit the Bacula Director configuration file `/etc/bacula/bacula-dir.conf` to start the script at the finish of each job. To do this you need to change the lines described below in the Messages resource that is used by all the configured jobs:
   ```
   Messages {
     ...
@@ -103,14 +110,21 @@ Link this Zabbix template to each host that has a Bacula's backup job implemente
   }
   ```
 
-4. Now restart the Bacula Director service. In my case I used this command:
+5. Now restart the Bacula Director service. In my case I used this command:
   ```
   systemctl restart bacula-dir
   ```
 
-5. Make a copy of the Zabbix template from this repository and import it to your Zabbix server.
+  Debian or Ubuntu
+ ```
+  service bacula-dir restart
+  ```
 
-6. Edit your hosts that have configured backup jobs to use this template. Don't forget to edit the variables with the Bacula's processes names, and to disable in hosts that are only Bacula's clients the items that check the Bacula Director and Storage processes.
+6. Make a copy of the Zabbix template from this repository and import it to your Zabbix server.
+
+7. Edit your hosts that have configured backup jobs to use this template. Don't forget to edit the variables with the Bacula's processes names, and to disable in hosts that are only Bacula's clients the items that check the Bacula Director and Storage processes.
+
+8. The name of the Bacula Daemon have to match the hostname on zabbix
 
 ### References
 
