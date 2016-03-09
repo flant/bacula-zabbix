@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>2.0</version>
-    <date>2015-05-01T15:46:08Z</date>
+    <date>2016-03-09T13:52:30Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -1301,7 +1301,7 @@
     <triggers>
         <trigger>
             <expression>{Template Bacula:bacula.diff.job.status.last()}&gt;1</expression>
-            <name>Backup Differential FAIL in {HOST.NAME}</name>
+            <name>Backup Differential FAIL on {HOST.NAME}</name>
             <url/>
             <status>0</status>
             <priority>3</priority>
@@ -1311,7 +1311,7 @@
         </trigger>
         <trigger>
             <expression>{Template Bacula:bacula.full.job.status.last()}&gt;1</expression>
-            <name>Backup Full FAIL in {HOST.NAME}</name>
+            <name>Backup Full FAIL on {HOST.NAME}</name>
             <url/>
             <status>0</status>
             <priority>4</priority>
@@ -1321,7 +1321,7 @@
         </trigger>
         <trigger>
             <expression>{Template Bacula:bacula.incr.job.status.last()}&gt;1</expression>
-            <name>Backup Incremental FAIL in {HOST.NAME}</name>
+            <name>Backup Incremental FAIL on {HOST.NAME}</name>
             <url/>
             <status>0</status>
             <priority>2</priority>
@@ -1330,8 +1330,8 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template Bacula:proc.num[{$BACULA.DIR}].last()}=0</expression>
-            <name>Bacula Director is DOWN in {HOST.NAME}</name>
+            <expression>{Template Bacula:proc.num[{$BACULA.DIR}].last(3)}=0</expression>
+            <name>Bacula Director is DOWN on {HOST.NAME}</name>
             <url/>
             <status>0</status>
             <priority>5</priority>
@@ -1340,8 +1340,8 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template Bacula:proc.num[{$BACULA.FD}].last()}=0</expression>
-            <name>Bacula File is DOWN in {HOST.NAME}</name>
+            <expression>{Template Bacula:proc.num[{$BACULA.FD}].last(3)}=0</expression>
+            <name>Bacula File daemon is DOWN on {HOST.NAME}</name>
             <url/>
             <status>0</status>
             <priority>4</priority>
@@ -1350,8 +1350,8 @@
             <dependencies/>
         </trigger>
         <trigger>
-            <expression>{Template Bacula:proc.num[{$BACULA.SD}].last()}=0</expression>
-            <name>Bacula Storage is DOWN in {HOST.NAME}</name>
+            <expression>{Template Bacula:proc.num[{$BACULA.SD}].last(3)}=0</expression>
+            <name>Bacula Storage daemon is DOWN on {HOST.NAME}</name>
             <url/>
             <status>0</status>
             <priority>5</priority>
@@ -1380,18 +1380,6 @@
             <ymax_item_1>0</ymax_item_1>
             <graph_items>
                 <graph_item>
-                    <sortorder>0</sortorder>
-                    <drawtype>5</drawtype>
-                    <color>9999FF</color>
-                    <yaxisside>0</yaxisside>
-                    <calc_fnc>2</calc_fnc>
-                    <type>0</type>
-                    <item>
-                        <host>Template Bacula</host>
-                        <key>bacula.diff.job.bytes</key>
-                    </item>
-                </graph_item>
-                <graph_item>
                     <sortorder>1</sortorder>
                     <drawtype>2</drawtype>
                     <color>C80000</color>
@@ -1401,6 +1389,18 @@
                     <item>
                         <host>Template Bacula</host>
                         <key>bacula.diff.job.status</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>0</sortorder>
+                    <drawtype>5</drawtype>
+                    <color>9999FF</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Bacula</host>
+                        <key>bacula.diff.job.bytes</key>
                     </item>
                 </graph_item>
             </graph_items>
@@ -1468,18 +1468,6 @@
             <ymax_item_1>0</ymax_item_1>
             <graph_items>
                 <graph_item>
-                    <sortorder>0</sortorder>
-                    <drawtype>5</drawtype>
-                    <color>00EEEE</color>
-                    <yaxisside>0</yaxisside>
-                    <calc_fnc>2</calc_fnc>
-                    <type>0</type>
-                    <item>
-                        <host>Template Bacula</host>
-                        <key>bacula.diff.job.time</key>
-                    </item>
-                </graph_item>
-                <graph_item>
                     <sortorder>1</sortorder>
                     <drawtype>2</drawtype>
                     <color>C80000</color>
@@ -1489,6 +1477,18 @@
                     <item>
                         <host>Template Bacula</host>
                         <key>bacula.diff.job.status</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>0</sortorder>
+                    <drawtype>5</drawtype>
+                    <color>00EEEE</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Bacula</host>
+                        <key>bacula.diff.job.time</key>
                     </item>
                 </graph_item>
             </graph_items>
@@ -1512,18 +1512,6 @@
             <ymax_item_1>0</ymax_item_1>
             <graph_items>
                 <graph_item>
-                    <sortorder>0</sortorder>
-                    <drawtype>5</drawtype>
-                    <color>00C800</color>
-                    <yaxisside>0</yaxisside>
-                    <calc_fnc>2</calc_fnc>
-                    <type>0</type>
-                    <item>
-                        <host>Template Bacula</host>
-                        <key>bacula.diff.job.files</key>
-                    </item>
-                </graph_item>
-                <graph_item>
                     <sortorder>1</sortorder>
                     <drawtype>2</drawtype>
                     <color>C80000</color>
@@ -1533,6 +1521,18 @@
                     <item>
                         <host>Template Bacula</host>
                         <key>bacula.diff.job.status</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>0</sortorder>
+                    <drawtype>5</drawtype>
+                    <color>00C800</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Bacula</host>
+                        <key>bacula.diff.job.files</key>
                     </item>
                 </graph_item>
             </graph_items>
@@ -1556,18 +1556,6 @@
             <ymax_item_1>0</ymax_item_1>
             <graph_items>
                 <graph_item>
-                    <sortorder>0</sortorder>
-                    <drawtype>5</drawtype>
-                    <color>CCCC00</color>
-                    <yaxisside>0</yaxisside>
-                    <calc_fnc>2</calc_fnc>
-                    <type>0</type>
-                    <item>
-                        <host>Template Bacula</host>
-                        <key>bacula.diff.job.speed</key>
-                    </item>
-                </graph_item>
-                <graph_item>
                     <sortorder>1</sortorder>
                     <drawtype>2</drawtype>
                     <color>C80000</color>
@@ -1577,6 +1565,18 @@
                     <item>
                         <host>Template Bacula</host>
                         <key>bacula.diff.job.status</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>0</sortorder>
+                    <drawtype>5</drawtype>
+                    <color>CCCC00</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Bacula</host>
+                        <key>bacula.diff.job.speed</key>
                     </item>
                 </graph_item>
             </graph_items>
@@ -1644,18 +1644,6 @@
             <ymax_item_1>0</ymax_item_1>
             <graph_items>
                 <graph_item>
-                    <sortorder>0</sortorder>
-                    <drawtype>5</drawtype>
-                    <color>FF9999</color>
-                    <yaxisside>0</yaxisside>
-                    <calc_fnc>2</calc_fnc>
-                    <type>0</type>
-                    <item>
-                        <host>Template Bacula</host>
-                        <key>bacula.full.job.compr</key>
-                    </item>
-                </graph_item>
-                <graph_item>
                     <sortorder>1</sortorder>
                     <drawtype>2</drawtype>
                     <color>C80000</color>
@@ -1665,6 +1653,18 @@
                     <item>
                         <host>Template Bacula</host>
                         <key>bacula.full.job.status</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>0</sortorder>
+                    <drawtype>5</drawtype>
+                    <color>FF9999</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Bacula</host>
+                        <key>bacula.full.job.compr</key>
                     </item>
                 </graph_item>
             </graph_items>
@@ -1732,18 +1732,6 @@
             <ymax_item_1>0</ymax_item_1>
             <graph_items>
                 <graph_item>
-                    <sortorder>0</sortorder>
-                    <drawtype>5</drawtype>
-                    <color>00C800</color>
-                    <yaxisside>0</yaxisside>
-                    <calc_fnc>2</calc_fnc>
-                    <type>0</type>
-                    <item>
-                        <host>Template Bacula</host>
-                        <key>bacula.full.job.files</key>
-                    </item>
-                </graph_item>
-                <graph_item>
                     <sortorder>1</sortorder>
                     <drawtype>2</drawtype>
                     <color>C80000</color>
@@ -1753,6 +1741,18 @@
                     <item>
                         <host>Template Bacula</host>
                         <key>bacula.full.job.status</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>0</sortorder>
+                    <drawtype>5</drawtype>
+                    <color>00C800</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Bacula</host>
+                        <key>bacula.full.job.files</key>
                     </item>
                 </graph_item>
             </graph_items>
@@ -1776,18 +1776,6 @@
             <ymax_item_1>0</ymax_item_1>
             <graph_items>
                 <graph_item>
-                    <sortorder>0</sortorder>
-                    <drawtype>5</drawtype>
-                    <color>CCCC00</color>
-                    <yaxisside>0</yaxisside>
-                    <calc_fnc>2</calc_fnc>
-                    <type>0</type>
-                    <item>
-                        <host>Template Bacula</host>
-                        <key>bacula.full.job.speed</key>
-                    </item>
-                </graph_item>
-                <graph_item>
                     <sortorder>1</sortorder>
                     <drawtype>2</drawtype>
                     <color>C80000</color>
@@ -1797,6 +1785,18 @@
                     <item>
                         <host>Template Bacula</host>
                         <key>bacula.full.job.status</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>0</sortorder>
+                    <drawtype>5</drawtype>
+                    <color>CCCC00</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Bacula</host>
+                        <key>bacula.full.job.speed</key>
                     </item>
                 </graph_item>
             </graph_items>
@@ -1820,18 +1820,6 @@
             <ymax_item_1>0</ymax_item_1>
             <graph_items>
                 <graph_item>
-                    <sortorder>0</sortorder>
-                    <drawtype>5</drawtype>
-                    <color>9999FF</color>
-                    <yaxisside>0</yaxisside>
-                    <calc_fnc>2</calc_fnc>
-                    <type>0</type>
-                    <item>
-                        <host>Template Bacula</host>
-                        <key>bacula.incr.job.bytes</key>
-                    </item>
-                </graph_item>
-                <graph_item>
                     <sortorder>1</sortorder>
                     <drawtype>2</drawtype>
                     <color>C80000</color>
@@ -1841,6 +1829,18 @@
                     <item>
                         <host>Template Bacula</host>
                         <key>bacula.incr.job.status</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>0</sortorder>
+                    <drawtype>5</drawtype>
+                    <color>9999FF</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Bacula</host>
+                        <key>bacula.incr.job.bytes</key>
                     </item>
                 </graph_item>
             </graph_items>
@@ -1952,18 +1952,6 @@
             <ymax_item_1>0</ymax_item_1>
             <graph_items>
                 <graph_item>
-                    <sortorder>0</sortorder>
-                    <drawtype>5</drawtype>
-                    <color>00C800</color>
-                    <yaxisside>0</yaxisside>
-                    <calc_fnc>2</calc_fnc>
-                    <type>0</type>
-                    <item>
-                        <host>Template Bacula</host>
-                        <key>bacula.incr.job.files</key>
-                    </item>
-                </graph_item>
-                <graph_item>
                     <sortorder>1</sortorder>
                     <drawtype>2</drawtype>
                     <color>C80000</color>
@@ -1973,6 +1961,18 @@
                     <item>
                         <host>Template Bacula</host>
                         <key>bacula.incr.job.status</key>
+                    </item>
+                </graph_item>
+                <graph_item>
+                    <sortorder>0</sortorder>
+                    <drawtype>5</drawtype>
+                    <color>00C800</color>
+                    <yaxisside>0</yaxisside>
+                    <calc_fnc>2</calc_fnc>
+                    <type>0</type>
+                    <item>
+                        <host>Template Bacula</host>
+                        <key>bacula.incr.job.files</key>
                     </item>
                 </graph_item>
             </graph_items>
